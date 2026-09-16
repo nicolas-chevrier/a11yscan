@@ -1,0 +1,48 @@
+{
+  "name": "a11yscan",
+  "version": "0.1.0",
+  "description": "Scanner d'accessibilité (RGAA) intégrable en CI/CD pour équipes dev, basé sur axe-core",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./scoring": {
+      "types": "./dist/scoring.d.ts",
+      "default": "./dist/scoring.js"
+    },
+    "./rgaaMapping": {
+      "types": "./dist/rgaaMapping.d.ts",
+      "default": "./dist/rgaaMapping.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "default": "./dist/types.js"
+    }
+  },
+  "bin": {
+    "a11yscan": "./dist/cli.js"
+  },
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsc",
+    "start": "node dist/cli.js"
+  },
+  "dependencies": {
+    "axe-core": "^4.10.2",
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.1",
+    "puppeteer": "^23.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

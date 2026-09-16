@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.log
+.env
+a11yscan-report.json
+a11yscan-report.html
+*.vsix

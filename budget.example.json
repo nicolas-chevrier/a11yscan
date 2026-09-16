@@ -1,0 +1,9 @@
+{
+  "minOverallScore": 70,
+  "minRuleScores": {
+    "image-alt": 100,
+    "label": 100,
+    "color-contrast": 60,
+    "link-name": 100
+  }
+}
