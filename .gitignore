@@ -1,5 +1,6 @@
 node_modules/
 dist/
+src/axeSource.generated.ts
 *.log
 .env
 a11yscan-report.json

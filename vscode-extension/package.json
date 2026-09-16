@@ -1,0 +1,50 @@
+{
+  "name": "a11yscan-vscode",
+  "displayName": "A11yscan",
+  "description": "Scanner d'accessibilité numérique (RGAA) intégré à VS Code",
+  "version": "0.1.0",
+  "publisher": "a11yscan-dev",
+  "private": true,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onCommand:a11yscan.scanUrl"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "a11yscan.scanUrl",
+        "title": "A11yscan: Scanner une URL",
+        "category": "A11yscan"
+      }
+    ],
+    "configuration": {
+      "title": "A11yscan",
+      "properties": {
+        "a11yscan.budgetPath": {
+          "type": "string",
+          "default": "",
+          "description": "Chemin, relatif à la racine du workspace, vers un fichier budget.json. Laisser vide pour ne pas évaluer de budget."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --platform=node --format=cjs --outfile=dist/extension.js --external:vscode --external:puppeteer",
+    "watch": "npm run build -- --watch",
+    "typecheck": "tsc --noEmit",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "puppeteer": "^23.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.1",
+    "a11yscan": "file:..",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.2"
+  }
+}

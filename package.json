@@ -28,7 +28,9 @@
   },
   "scripts": {
     "dev": "tsx src/cli.ts",
-    "build": "tsc",
+    "generate-axe-source": "node scripts/generate-axe-source.mjs",
+    "postinstall": "node scripts/generate-axe-source.mjs",
+    "build": "npm run generate-axe-source && tsc",
     "start": "node dist/cli.js"
   },
   "dependencies": {
