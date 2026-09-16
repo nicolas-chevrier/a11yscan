@@ -79,6 +79,17 @@ Les règles axe-core hors de la table de correspondance RGAA (`src/rgaaMapping.t
 sont exclues du score et comptées séparément ("N autre(s) vérification(s)... hors
 table RGAA") plutôt que rattachées arbitrairement à un critère.
 
+## Extensions
+
+Le moteur (`buildReport`, `rgaaMapping`, types) est exposé via `src/index.ts` et des
+sous-chemins (`a11yscan/scoring`, `a11yscan/rgaaMapping`, `a11yscan/types`) pour être
+réutilisé sans dépendre de Puppeteer :
+
+- [extension VS Code](vscode-extension) — scanne une URL depuis l'éditeur (utilise
+  Puppeteer, comme le CLI).
+- [extension Chrome](chrome-extension) — scanne l'onglet actif, sans Puppeteer :
+  axe-core est injecté directement dans la page.
+
 ## Limites connues
 
 - **La table RGAA (`rgaaMapping.ts`) est indicative**, construite à partir de la
