@@ -1,6 +1,9 @@
+import browserPolyfill from "webextension-polyfill";
 import { buildReport } from "a11yscan/scoring";
 import type { RawAxeResults } from "a11yscan/scoring";
 import type { ScoreReport } from "a11yscan/types";
+
+const browser = browserPolyfill as unknown as typeof chrome;
 
 const statusTextEl = document.getElementById("status-text") as HTMLSpanElement;
 const spinnerEl = document.getElementById("spinner") as HTMLSpanElement;
@@ -21,7 +24,7 @@ function setStatus(text: string, spinning: boolean): void {
 }
 
 async function showLastScoreIfMatching(tabUrl: string): Promise<void> {
-  const { lastReport } = await chrome.storage.local.get("lastReport");
+  const { lastReport } = await browser.storage.local.get("lastReport");
   const report = lastReport as ScoreReport | undefined;
   if (!report || report.url !== tabUrl) return;
 
@@ -32,13 +35,13 @@ async function showLastScoreIfMatching(tabUrl: string): Promise<void> {
 
 async function runScan(tabId: number, url: string): Promise<void> {
   setStatus("Injection d'axe-core...", true);
-  await chrome.scripting.executeScript({
+  await browser.scripting.executeScript({
     target: { tabId },
     files: ["vendor/axe.min.js"],
   });
 
   setStatus("Analyse de la page en cours...", true);
-  const injectionResults = await chrome.scripting.executeScript({
+  const injectionResults = await browser.scripting.executeScript({
     target: { tabId },
     func: async () => {
       // @ts-expect-error injecté globalement par vendor/axe.min.js
@@ -55,13 +58,13 @@ async function runScan(tabId: number, url: string): Promise<void> {
   }
 
   const report = buildReport(url, raw);
-  await chrome.storage.local.set({ lastReport: report });
-  await chrome.tabs.create({ url: chrome.runtime.getURL("results.html") });
+  await browser.storage.local.set({ lastReport: report });
+  await browser.tabs.create({ url: browser.runtime.getURL("results.html") });
   setStatus("Rapport ouvert dans un nouvel onglet.", false);
 }
 
 async function init(): Promise<void> {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
   const isScannable = !!tab?.id && /^https?:/.test(tab.url ?? "");
 
   urlEl.textContent = tab?.url ?? "";

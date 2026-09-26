@@ -89,6 +89,8 @@ réutilisé sans dépendre de Puppeteer :
   Puppeteer, comme le CLI).
 - [extension Chrome](chrome-extension) — scanne l'onglet actif, sans Puppeteer :
   axe-core est injecté directement dans la page.
+- [extension Firefox](firefox-extension) — même code que l'extension Chrome (via
+  `browser.*`/webextension-polyfill), dossier réduit au manifeste Firefox.
 
 ## Limites connues
 

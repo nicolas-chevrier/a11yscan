@@ -1,0 +1,15 @@
+{
+  "name": "a11yscan-firefox",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Extension Firefox — scan d'accessibilité RGAA (axe-core) de la page active (même source que chrome-extension/)",
+  "scripts": {
+    "sync-axe": "node scripts/sync-axe.mjs",
+    "build": "npm run sync-axe && esbuild ../chrome-extension/src/popup.ts ../chrome-extension/src/results.ts --bundle --format=esm --platform=browser --outdir=dist",
+    "watch": "npm run build -- --watch"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.2",
+    "esbuild": "^0.24.0"
+  }
+}

@@ -9,8 +9,12 @@
     "watch": "npm run build -- --watch",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "webextension-polyfill": "^0.12.0"
+  },
   "devDependencies": {
     "@types/chrome": "^0.0.287",
+    "@types/webextension-polyfill": "^0.12.1",
     "a11yscan": "file:..",
     "axe-core": "^4.10.2",
     "esbuild": "^0.24.0",

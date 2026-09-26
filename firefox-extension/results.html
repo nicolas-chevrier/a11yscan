@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>A11yscan — Rapport</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: #fbfbfd;
+    color: #17171f;
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #15151c; color: #eeeef4; }
+  }
+  #root:empty::before,
+  #root.loading::before {
+    content: "Chargement…";
+    display: block;
+    padding: 40px 24px;
+    color: inherit;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+  <div id="root" class="loading"></div>
+  <script type="module" src="dist/results.js"></script>
+</body>
+</html>
