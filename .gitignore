@@ -5,4 +5,3 @@ src/axeSource.generated.ts
 .env
 a11yscan-report.json
 a11yscan-report.html
-*.vsix
