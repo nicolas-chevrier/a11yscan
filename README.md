@@ -28,6 +28,28 @@ par règle technique — pas la détection elle-même.
 npm install
 ```
 
+## Compatibilité multiplateforme
+
+Cross-platform sans changement — rien n'est spécifique à Windows.
+
+**Linux/Ubuntu** : le CLI et l'extension VS Code utilisent Puppeteer, qui télécharge
+son propre Chromium. Sur un Ubuntu desktop classique ça fonctionne tel quel ; sur une
+install minimale, un serveur ou un conteneur, il manque souvent des bibliothèques
+système nécessaires à Chromium :
+
+```bash
+sudo apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 \
+  libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2
+```
+
+Symptôme si elles manquent : `npm install` réussit mais le scan plante au lancement du
+navigateur (`Failed to launch the browser process`). Les extensions Chrome et Firefox
+n'ont pas ce problème (axe-core tourne directement dans le moteur du navigateur, pas
+de Puppeteer).
+
+**Windows/PowerShell** : voir l'avertissement `npm run dev --` ci-dessous — spécifique
+à PowerShell, absent sous bash/Ubuntu.
+
 ## Usage
 
 ```bash
